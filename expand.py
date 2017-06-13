@@ -30,8 +30,8 @@ if __name__ == "__main__":
         narrowers = [match['properties'].get('narrow', '') for match in expanded['results']]
         broaders = [match['properties'].get('broad', '') for match in expanded['results']]
 
-        narrowers = set(item.strip('"') for sublist in narrowers for item in sublist)
-        broaders = set(item.strip('"') for sublist in broaders for item in sublist)
+        narrowers = [item.strip('"').replace(' ', '_') for sublist in narrowers for item in set(sublist)]
+        broaders = [item.strip('"').replace(' ', '_') for sublist in broaders for item in set(sublist)]
 
         print('Broaders: %s  - Narrowers: %s' % (len(broaders), len(narrowers)))
         # print(sorted(narrowers))
